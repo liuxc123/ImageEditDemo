@@ -1,0 +1,31 @@
+//
+//  CustomLabel.m
+//  sadsad
+//
+//  Created by codans on 16/4/15.
+//  Copyright © 2016年 codans. All rights reserved.
+//
+
+#import "CustomLabel.h"
+
+@implementation CustomLabel
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self){
+    }
+    return self;
+}
+
+
+
+-(void)awakeFromNib{
+    [super awakeFromNib];
+    [super setFont:[CustomFontAdapter adjustFont:self.font]];
+}
+
+-(void)setFont:(UIFont *)font{
+    [super setFont:[CustomFontAdapter adjustFont:font]];
+}
+
+@end

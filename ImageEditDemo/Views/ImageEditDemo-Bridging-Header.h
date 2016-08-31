@@ -4,3 +4,5 @@
 
 #import "PEPhotoCropEditor/PECropRectView.h"
 #import "PEPhotoCropEditor/PECropViewController.h"
+
+#import "CustomFontAdapter.h"
