@@ -1,0 +1,6 @@
+framework module PEPhotoCropEditor {
+  umbrella header "PEPhotoCropEditor-umbrella.h"
+
+  export *
+  module * { export * }
+}

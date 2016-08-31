@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>PEPhotoCropEditor.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ImageEditDemo.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ImageEditDemoTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-ImageEditDemoUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>798CA1DBF695750144A23E96CD62D691</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD7F588C36705C4D4AF3930C05066179</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC49D05A21C772C03958E482FEE4C94C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FCF2939BA0BD8648FCB8D1C92D83639B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

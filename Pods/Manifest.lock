@@ -1,0 +1,12 @@
+PODS:
+  - PEPhotoCropEditor (1.3.1)
+
+DEPENDENCIES:
+  - PEPhotoCropEditor
+
+SPEC CHECKSUMS:
+  PEPhotoCropEditor: 613292fce009efd085e7aed975f1ebb3fec8bb7b
+
+PODFILE CHECKSUM: ecb57d841e267dce1b961a947175b489caf5df96
+
+COCOAPODS: 1.0.1
