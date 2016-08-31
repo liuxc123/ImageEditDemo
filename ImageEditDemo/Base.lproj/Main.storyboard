@@ -317,7 +317,6 @@
         <!--9格切图-->
         <scene sceneID="8jx-pV-5WP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pvf-Ev-4aM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="kya-XC-Y0N" customClass="SecondViewController" customModule="ImageEditDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JvC-IE-8Yv"/>
@@ -328,37 +327,37 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="879-NN-Gav" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lg7-bE-kag">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="737"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UiQ-Yx-iaC">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="737"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l6V-6B-d8t">
-                                                        <rect key="frame" x="0.0" y="64" width="414" height="15"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="15"/>
                                                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="DE5-Ax-qnU"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eu0-io-z6F" userLabel="imageView的背景View">
-                                                        <rect key="frame" x="0.0" y="79" width="414" height="280"/>
+                                                        <rect key="frame" x="0.0" y="15" width="414" height="280"/>
                                                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="280" id="znp-aV-myK"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBF-UT-VZ1">
-                                                        <rect key="frame" x="0.0" y="359" width="414" height="35"/>
+                                                        <rect key="frame" x="0.0" y="295" width="414" height="35"/>
                                                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="x85-Sa-uFF"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHS-Vh-hav" userLabel="按钮背景view" colorLabel="IBBuiltInLabel-Green">
-                                                        <rect key="frame" x="0.0" y="394" width="414" height="50"/>
+                                                        <rect key="frame" x="0.0" y="330" width="414" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHX-Gh-aLt" customClass="CustomButton">
                                                                 <rect key="frame" x="182" y="9" width="51" height="33"/>
@@ -412,7 +411,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q2g-b5-7oD" userLabel="功能区背景view">
-                                                        <rect key="frame" x="0.0" y="444" width="414" height="293"/>
+                                                        <rect key="frame" x="0.0" y="380" width="414" height="293"/>
                                                         <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     </view>
                                                 </subviews>
@@ -429,7 +428,7 @@
                                                     <constraint firstItem="ZHS-Vh-hav" firstAttribute="top" secondItem="dBF-UT-VZ1" secondAttribute="bottom" id="Udj-gC-9wx"/>
                                                     <constraint firstAttribute="trailing" secondItem="l6V-6B-d8t" secondAttribute="trailing" id="bXn-Y0-O7I"/>
                                                     <constraint firstItem="ZHS-Vh-hav" firstAttribute="height" secondItem="UiQ-Yx-iaC" secondAttribute="width" multiplier="50/414" id="dtb-vy-Lbu"/>
-                                                    <constraint firstItem="l6V-6B-d8t" firstAttribute="top" secondItem="UiQ-Yx-iaC" secondAttribute="top" constant="64" id="f8j-Td-35N"/>
+                                                    <constraint firstItem="l6V-6B-d8t" firstAttribute="top" secondItem="UiQ-Yx-iaC" secondAttribute="top" id="f8j-Td-35N"/>
                                                     <constraint firstItem="ZHS-Vh-hav" firstAttribute="leading" secondItem="UiQ-Yx-iaC" secondAttribute="leading" id="kWD-jH-fzc"/>
                                                     <constraint firstItem="eu0-io-z6F" firstAttribute="leading" secondItem="UiQ-Yx-iaC" secondAttribute="leading" id="mbY-8h-nxg"/>
                                                     <constraint firstItem="dBF-UT-VZ1" firstAttribute="leading" secondItem="UiQ-Yx-iaC" secondAttribute="leading" id="snV-RA-5mj"/>
@@ -461,7 +460,7 @@
                             <constraint firstItem="879-NN-Gav" firstAttribute="leading" secondItem="MMA-Dx-spt" secondAttribute="leading" id="4jV-1O-Ne6"/>
                             <constraint firstAttribute="trailing" secondItem="879-NN-Gav" secondAttribute="trailing" id="DZH-N8-hF7"/>
                             <constraint firstAttribute="bottom" secondItem="879-NN-Gav" secondAttribute="bottom" id="NK2-YK-A24"/>
-                            <constraint firstItem="879-NN-Gav" firstAttribute="top" secondItem="MMA-Dx-spt" secondAttribute="top" id="mUF-N3-xez"/>
+                            <constraint firstItem="879-NN-Gav" firstAttribute="top" secondItem="MMA-Dx-spt" secondAttribute="top" constant="64" id="mUF-N3-xez"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="9格切图" id="ZYk-tP-Tk3">
@@ -480,6 +479,7 @@
                         <outlet property="imgVBgVH" destination="znp-aV-myK" id="HL3-O9-u4q"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pvf-Ev-4aM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-487" y="850"/>
         </scene>
