@@ -68,8 +68,11 @@ class TextPasterItem: PasterItem, UITextViewDelegate {
         textImageView.userInteractionEnabled = true
         textImageView.backgroundColor = UIColor.clearColor()
         self.contentView.addSubview(textImageView)
+        //点击手势
+        let oneTap = UITapGestureRecognizer(target: self, action: #selector(pasterTapGes(_:)))
+        textImageView.addGestureRecognizer(oneTap)
         //双击手势
-        let twoTap = UITapGestureRecognizer(target: self, action: #selector(twoTapGes(_:)))
+        let twoTap = UITapGestureRecognizer(target: self, action: #selector(pasterTapGes(_:)))
         twoTap.numberOfTapsRequired = 2
         textImageView.addGestureRecognizer(twoTap)
         
@@ -84,11 +87,11 @@ class TextPasterItem: PasterItem, UITextViewDelegate {
     //MARK: - initTextView
     func createTextView(frame: CGRect, text: String, font: UIFont?) {
         let textView = UITextView(frame: self.textImageView.frame)
-        textView.backgroundColor = UIColor.whiteColor()
+        textView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
         textView.scrollEnabled = false
         textView.delegate = self
         textView.keyboardType = UIKeyboardType.Default
-        textView.returnKeyType = .Done
+        textView.returnKeyType = .Default
         textView.textAlignment = .Center
         textView.textColor = UIColor.blackColor()
         textView.font = font
@@ -99,34 +102,60 @@ class TextPasterItem: PasterItem, UITextViewDelegate {
         textView.hidden = true
         self.textView  = textView
         
-
+        initEditPasterView()
     }
     
-    
-//    func initEditPasterView() {
-//        let inputAccessoryView = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 50))
-//        inputAccessoryView.backgroundColor  = UIColor.redColor()
-//        textView.inputAccessoryView = inputAccessoryView
-//    }
+    /**
+     *   键盘编辑层
+     */
+    func initEditPasterView() {
+        let inputAccessoryView = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 100))
+        inputAccessoryView.backgroundColor  = UIColor.clearColor()
+        textView.inputAccessoryView = inputAccessoryView
+        
+        //选择颜色
+        inputAccessoryView.inPutColorView.selectColorBlock = {[unowned self] color in
+            self.textColor = color
+            self.textView.textColor = color
+            self.drawTextImageView()
+        }
+        //完成操作
+        inputAccessoryView.completeBlock = {[unowned self] in
+            self.textView.resignFirstResponder()
+            self.textView.hidden = true
+            self.textImageView.hidden = false
+        }
+    }
     
     
     /**
      *   双击开启编辑
      */
-    func twoTapGes(ges: UITapGestureRecognizer) {
-        if ges.numberOfTapsRequired == 2 {
+    override func pasterTapGes(ges: UITapGestureRecognizer) {
+        super.pasterTapGes(ges)
+        
+        switch ges.numberOfTapsRequired {
+        case 1:
+            self.isSelect = true
+        case 2:
             textView.becomeFirstResponder()
             textView.hidden = false
+            textImageView.hidden = true
+        default:
+            break
         }
+
     }
 
     
     //MARK: - UITextViewDelegate
     func textViewDidBeginEditing(textView: UITextView) {
+        self.isSelect = true
         if textView.text == textString {
             textView.text = ""
             calFontSize()
         }
+
     }
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -140,12 +169,7 @@ class TextPasterItem: PasterItem, UITextViewDelegate {
     
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            self.endEditing(true)
-            textView.hidden = true
-            return false
-        }
-        
+
         isDeleting = range.length >= 1 && text.characters.count == 0
         if textView.font!.pointSize <= self.minFontSize && !isDeleting {
             return false

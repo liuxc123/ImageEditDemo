@@ -17,8 +17,8 @@ class FourthViewController: UIViewController,UIActionSheetDelegate,UIImagePicker
     @IBOutlet weak var accessoryBtn: UIButton!
     @IBOutlet weak var textBtn: UIButton!
     @IBOutlet weak var contentView: UIView!
-    var pasterView: PasterView!
     var myPaster: MyPaster!
+    var imagePasterNum: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,16 +50,18 @@ class FourthViewController: UIViewController,UIActionSheetDelegate,UIImagePicker
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         
-        if pasterView != nil {
-            self.pasterView.isHiddenBorder(false)
-        }
     }
     
     //MARK: - 添加饰品方法
     @IBAction func addAccessoryAction(sender: UIButton) {
         let imagePaster = ImagePaster()
         imagePaster.size = CGSize(width: 100, height: 100)
-        imagePaster.image = UIImage(named: "rabbit")
+        
+        imagePaster.image = UIImage(named: "paster_\(imagePasterNum)")
+        imagePasterNum += 1
+        if imagePasterNum >= 4 {
+            imagePasterNum = 0
+        }
         myPaster.addPaster(imagePaster)
     }
     
@@ -84,6 +86,7 @@ class FourthViewController: UIViewController,UIActionSheetDelegate,UIImagePicker
     func addPicAction() {
         let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "相册","相机")
         actionSheet.showInView(self.view)
+      
     }
 
     //TODO: 保存图片

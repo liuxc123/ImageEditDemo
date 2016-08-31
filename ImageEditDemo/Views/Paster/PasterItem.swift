@@ -208,6 +208,20 @@ class PasterItem: UIView {
         self.pasterItemTouchObj = touchObj
     }
     
+    /**
+     *  添加贴图带动画
+     *
+     */
+    func addPasterItemWithAnimation() {
+        let frameAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        frameAnimation.values = [1.3, 1]
+        frameAnimation.duration = 0.3
+        frameAnimation.repeatCount = 1
+        frameAnimation.removedOnCompletion = false
+        frameAnimation.fillMode = kCAFillModeForwards
+        self.layer.addAnimation(frameAnimation, forKey: "frameAnimation")
+    }
+    
     
     //MARK: - 触摸手势
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

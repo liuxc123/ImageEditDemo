@@ -249,12 +249,12 @@ class MyPaster: UIView {
             //在目标之内 -- KVC
             let itemRect = currentSelectPasterItem!.convertRect(currentSelectPasterItem!.bounds, toView: self)
             if !CGRectContainsPoint(itemRect, gesPoint) {
-                currentSelectPasterItem!.setValue(false, forKey: "isSelect")
+                currentSelectPasterItem!.isSelect = false
                 currentSelectPasterItem = nil
             }
         } else {
             //在目标之外 -- KVC
-            currentSelectPasterItem!.setValue(false, forKey: "isSelect")
+            currentSelectPasterItem!.isSelect = false
             currentSelectPasterItem = nil
         }
         
@@ -295,8 +295,10 @@ class MyPaster: UIView {
             imagePasterItem.rotateIcon = rotateIcon
             imagePasterItem.iconSize = iconSize
             contentImageView.addSubview(imagePasterItem)
-            
+            imagePasterItem.addPasterItemWithAnimation()
+
             imagePasterItem.addTouch({[unowned self] (pasterItem)  in
+                self.currentSelectPasterItem = pasterItem
                 //delegate
                 self.delegate?.pasterIsSelect(self, selectorPaster: self.currentSelectPasterItem!.paster)
             })
@@ -323,8 +325,10 @@ class MyPaster: UIView {
             textPasterItem.rotateIcon = rotateIcon
             textPasterItem.iconSize = iconSize
             contentImageView.addSubview(textPasterItem)
+            textPasterItem.addPasterItemWithAnimation()
             
             textPasterItem.addTouch({[unowned self] (pasterItem)  in
+                self.currentSelectPasterItem = pasterItem
                 //delegate
                 self.delegate?.pasterIsSelect(self, selectorPaster: self.currentSelectPasterItem!.paster)
             })
