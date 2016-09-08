@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreImage
+import PEPhotoCropEditor
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, PECropViewControllerDelegate {
     
     @IBOutlet weak var BarcodeImageView: UIImageView!   //二维码
     
@@ -17,17 +18,20 @@ class FirstViewController: UIViewController {
     
     @IBOutlet weak var createBarcodeBtn: UIButton!
     
+    var logoImage: UIImage?
+    var barcodeColor: UIColor?
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "二维码"
 
         //设置导航栏右侧按钮
         let rightItem = UIBarButtonItem(title: "保存", style: .Plain, target: self, action: #selector(rightBtnAction))
-        self.navigationItem.rightBarButtonItem = rightItem
+        let addItem = UIBarButtonItem(barButtonSystemItem: .Camera, target: self, action: #selector(addPicAction))
+        self.navigationItem.rightBarButtonItems = [rightItem, addItem]
         
-        
+        initEditPasterView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,27 +39,78 @@ class FirstViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    /**
+     *   键盘编辑层
+     */
+    func initEditPasterView() {
+        let inputAccessoryView = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 100))
+        inputAccessoryView.backgroundColor  = UIColor.clearColor()
+        BarcodeTextField.inputAccessoryView = inputAccessoryView
+        
+        //选择颜色
+        inputAccessoryView.inPutColorView.selectColorBlock = {[unowned self] color in
+            self.barcodeColor = color
+            self.createBarcodeAction(self.createBarcodeBtn)
+        }
+        //完成操作
+        inputAccessoryView.completeBlock = {[unowned self] in
+            self.BarcodeTextField.resignFirstResponder()
+        }
+    }
+    
     //TODO: 生成二维码
     @IBAction func createBarcodeAction(sender: UIButton) {
-
-        BarcodeImageView.image = createQRForString("www.baidu.com", qrImage: UIImage(named: "rabbit"), color: UIColor.blueColor())
+        BarcodeImageView.image = createQRForString(BarcodeTextField.text, qrImage: logoImage, color: barcodeColor)
     }
     
     
     
     //TODO: 右键按钮方法
     func rightBtnAction() {
+        let resultImage = BarcodeImageView.image
         
+        if resultImage != nil {
+            // 存储到自己的相册
+            UIImageWriteToSavedPhotosAlbum(resultImage!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+    }
+
+
+    // 图片存储后的情况提醒方法
+    func image(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: AnyObject) {
         
+        if didFinishSavingWithError != nil {
+            
+            let alert = UIAlertView(title: "", message: "保存失败", delegate: self, cancelButtonTitle: nil)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1*NSEC_PER_SEC)), dispatch_get_main_queue(), {
+                alert.dismissWithClickedButtonIndex(0, animated: false)
+                
+            })
+            alert.show()
+            print("Error")
+            return
+        }
+        else {
+            let alert = UIAlertView(title: "", message: "已存入手机相册", delegate: self, cancelButtonTitle: nil)
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1*NSEC_PER_SEC)), dispatch_get_main_queue(), {
+                alert.dismissWithClickedButtonIndex(0, animated: false)
+                
+            })
+            
+            alert.show()
+            print("OK")
+        }
         
     }
 
 
-    
+
     /*****************************生成二维码*************************************/
     /**
      创建二维码图片
-     
+ 
      - parameter qrString: 内容
      - parameter qrImage:  logo图片
      - parameter color:    二维码颜色
@@ -109,5 +164,77 @@ class FirstViewController: UIViewController {
     
     
 /******************************************************************************/
+    
+    //TODO: 添加背景图片
+    func addPicAction() {
+        let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "相册","相机")
+        actionSheet.showInView(self.view)
+        
+    }
+    
+    //MARK: - UIActionSheet Delegate
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        if buttonIndex == 1 {
+            
+            if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
+                
+                picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+                picker.allowsEditing = false
+                self.presentViewController(picker, animated: true, completion: nil)
+            }else{
+                print("此设备不支持相册")
+            }
+            
+        }else if buttonIndex == 2 {
+            
+            if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+                picker.sourceType = UIImagePickerControllerSourceType.Camera
+                picker.cameraFlashMode = UIImagePickerControllerCameraFlashMode.Off
+                self.presentViewController(picker, animated: true, completion: nil)
+            }else{
+                print("此设备不支持相机")
+            }
+            
+        }else{
+            print("取消操作")
+        }
+    }
+    
+    //MARK: - UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        //进入编辑界面
+        let cropVC = PECropViewController()
+        cropVC.image = image
+        cropVC.delegate = self
+        cropVC.cropAspectRatio = 1
+        let navigationController = UINavigationController(rootViewController: cropVC)
+        picker.presentViewController(navigationController, animated: true, completion: nil)
+        
+    }
+    
+    //MARK: - PECropViewControllerDelegate
+    func cropViewControllerDidCancel(controller: PECropViewController!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func cropViewController(controller: PECropViewController!, didFinishCroppingImage croppedImage: UIImage!) {
+        
+        logoImage = croppedImage!
+        
+        //生成二维码
+        createBarcodeAction(createBarcodeBtn)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
 
 }

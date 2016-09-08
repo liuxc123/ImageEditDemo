@@ -84,6 +84,7 @@ class FourthViewController: UIViewController,UIActionSheetDelegate,UIImagePicker
 
     //TODO: 添加背景图片
     func addPicAction() {
+        self.view.endEditing(true)
         let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "相册","相机")
         actionSheet.showInView(self.view)
       

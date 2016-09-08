@@ -217,7 +217,7 @@ class TextPasterItem: PasterItem, UITextViewDelegate {
     
     //MARK: - 计算字体大小, 重新布局
     func calFontSize() {
-        let font = UIFont.systemFontOfSize(1)
+        let font = UIFont.systemFontOfSize(0)
         var cFont = font.pointSize
         var tSize = self.textSize(cFont, string: nil)
         self.textView.textContainerInset = UIEdgeInsetsZero

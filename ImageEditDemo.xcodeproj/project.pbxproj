@@ -26,7 +26,6 @@
 		AFA6E19F1D766B9100DE0E5C /* Paster.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA6E1991D766B9100DE0E5C /* Paster.swift */; };
 		AFA6E1A01D766B9100DE0E5C /* PasterImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA6E19A1D766B9100DE0E5C /* PasterImageView.swift */; };
 		AFA6E1A11D766B9100DE0E5C /* PasterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA6E19B1D766B9100DE0E5C /* PasterItem.swift */; };
-		AFA6E1A21D766B9100DE0E5C /* textImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA6E19C1D766B9100DE0E5C /* textImageView.swift */; };
 		AFA6E1A31D766B9100DE0E5C /* TextPasterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA6E19D1D766B9100DE0E5C /* TextPasterItem.swift */; };
 		AFA6E1AC1D769EB500DE0E5C /* EditPasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA6E1AB1D769EB500DE0E5C /* EditPasterView.swift */; };
 		AFA6E1AE1D76A19E00DE0E5C /* InputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA6E1AD1D76A19E00DE0E5C /* InputAccessoryView.swift */; };
@@ -99,7 +98,6 @@
 		AFA6E1991D766B9100DE0E5C /* Paster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paster.swift; sourceTree = "<group>"; };
 		AFA6E19A1D766B9100DE0E5C /* PasterImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasterImageView.swift; sourceTree = "<group>"; };
 		AFA6E19B1D766B9100DE0E5C /* PasterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasterItem.swift; sourceTree = "<group>"; };
-		AFA6E19C1D766B9100DE0E5C /* textImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textImageView.swift; sourceTree = "<group>"; };
 		AFA6E19D1D766B9100DE0E5C /* TextPasterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextPasterItem.swift; sourceTree = "<group>"; };
 		AFA6E1AB1D769EB500DE0E5C /* EditPasterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasterView.swift; sourceTree = "<group>"; };
 		AFA6E1AD1D76A19E00DE0E5C /* InputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputAccessoryView.swift; sourceTree = "<group>"; };
@@ -254,12 +252,11 @@
 		AFA6E1971D766B9100DE0E5C /* Paster */ = {
 			isa = PBXGroup;
 			children = (
+				AFA6E19B1D766B9100DE0E5C /* PasterItem.swift */,
 				AFA6E1981D766B9100DE0E5C /* ImagePasterItem.swift */,
+				AFA6E19D1D766B9100DE0E5C /* TextPasterItem.swift */,
 				AFA6E1991D766B9100DE0E5C /* Paster.swift */,
 				AFA6E19A1D766B9100DE0E5C /* PasterImageView.swift */,
-				AFA6E19B1D766B9100DE0E5C /* PasterItem.swift */,
-				AFA6E19C1D766B9100DE0E5C /* textImageView.swift */,
-				AFA6E19D1D766B9100DE0E5C /* TextPasterItem.swift */,
 				AFA6E1AD1D76A19E00DE0E5C /* InputAccessoryView.swift */,
 				AFA6E1AB1D769EB500DE0E5C /* EditPasterView.swift */,
 			);
@@ -616,7 +613,6 @@
 				AFA6E1AE1D76A19E00DE0E5C /* InputAccessoryView.swift in Sources */,
 				AFB103411D771B92005F32F1 /* SecondViewController.swift in Sources */,
 				AFA6E1A11D766B9100DE0E5C /* PasterItem.swift in Sources */,
-				AFA6E1A21D766B9100DE0E5C /* textImageView.swift in Sources */,
 				AFB103611D771CE5005F32F1 /* CustomLabel.m in Sources */,
 				AFB103601D771CE5005F32F1 /* CustomFontAdapter.m in Sources */,
 				AFB103421D771B92005F32F1 /* ThirdViewController.swift in Sources */,
